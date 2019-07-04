@@ -23,6 +23,15 @@ const Captcha = styled.div`
   animation: ${borderMove} 1s infinite linear;
 `;
 
+const AppVersion = styled.div`
+  position:absolute;
+  width:100%;
+  bottom:5px;
+  color:gray;
+  font-size:12px;
+  text-align:center;
+`;
+
 class Login extends React.Component {
 
   constructor(props) {
@@ -33,7 +42,8 @@ class Login extends React.Component {
         username: 'admin',
         password: 'admin'
       },
-      base64Img: ''
+      base64Img: '',
+      appVersion: window.Config.appVersion
     }
   }
 
@@ -65,12 +75,6 @@ class Login extends React.Component {
     })
   }
 
-  toggleForward(){
-    this.setState({
-      forward: !this.state.forward
-    });
-  }
-
   render() {
     const { getFieldProps } = this.props.form;
 
@@ -81,8 +85,8 @@ class Login extends React.Component {
           leftContent={(<i className={'fa fa-fw fa-home'} />)}
           rightContent={(<i className={'fa fa-fw fa-refresh'} />)}
         >react-app</NavBar>
-        
-        <div className={'pd-md center'}>
+
+        <div className={'pd-md center'} style={{backgroundColor:'white'}}>
           <img src="logo.jpg" style={{width:'50%'}} />
         </div>
 
@@ -114,9 +118,10 @@ class Login extends React.Component {
             )}
           >验证码</InputItem>
         </List>
-        <div className={'pd-md'}>
+        <div className={'pd-lg'}>
           <Button onClick={()=>this.login()} type="primary">登　录</Button><WhiteSpace />
         </div>
+        <AppVersion>版本号：{this.state.appVersion}</AppVersion>
       </div>
     );
   }
