@@ -3,10 +3,6 @@ import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 const historyArray = [];
 class AnimatedRouter extends React.Component {
-  constructor(props){
-    super(props);
-    console.log(props)
-  }
 
   render() {
     let forward = true;
@@ -29,7 +25,7 @@ class AnimatedRouter extends React.Component {
     return (
       <TransitionGroup className={'transition-wrapper'} childFactory={child => React.cloneElement(child,{classNames:  'absolute ' + (forward?'forward':'back')})}>
         <CSSTransition key={this.props.location.pathname} timeout={500}>
-        {this.props.children}
+        <div>{this.props.children}</div>
         </CSSTransition>
       </TransitionGroup>
     )

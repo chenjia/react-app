@@ -1,5 +1,4 @@
 import React from 'react';
-import { CSSTransition } from 'react-transition-group';
 
 const utils = window.utils;
 
@@ -18,7 +17,7 @@ class Login extends React.Component {
   }
 
   componentWillMount(){
-    
+    this.getCaptcha();
   }
 
   getCaptcha(){

@@ -36,18 +36,4 @@ class App extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {...state}
-}
-const mapDispatchToProps = (dispatch) => {
-  return {
-    header: hasHeader => {
-      dispatch({type:'UI/HERADER', ui: {header:hasHeader}})
-    },
-    login: user => {
-      dispatch({type: 'APP/LOGIN', app: {user:user}})
-    }
-  }
-}
-
 ReactDOM.render(<App />, document.getElementById('root'));

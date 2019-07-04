@@ -1,8 +1,11 @@
-import React, {Suspense} from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import AnimatedRouter from '../components/common/AnimatedRouter';
+import AnimatedRouter from '../components/ui/AnimatedRouter';
+import utils from '../utils'
 import login from './login';
 import home from './home';
+
+window.utils = utils;
 
 const routes = [
   ...login,
@@ -34,8 +37,8 @@ class Routers extends React.Component {
     super(props);
     this.state = {};
     this.mixin = {
-      screenWidth: window.screen.width,
-      screenHeight: window.screen.height,
+      screenWidth: document.documentElement.clientWidth,
+      screenHeight: document.documentElement.clientHeight,
       back(){
         props.history.goBack();
       },
@@ -50,34 +53,32 @@ class Routers extends React.Component {
   }
 
   render(){
-    const historyArray = [];
-    
-
     return (
       <Router>
         <Route render={({ location, match }) => {
-          let forward = true;
-          if(historyArray.length === 0){
-            historyArray.push(location.pathname);
-          }
-          if(historyArray.length > 1 && location.pathname === historyArray[historyArray.length-2]){
-            forward = false;
-          }else{
-            forward = true;
-          }
-
           return (
             <AnimatedRouter location={location}>
               <Switch location={location}>
+                <Route exact path="/" render={() => (<Redirect to="/login" />)} />
                 {routes.map((route, i) => (
                   <Route
                   key={i}
                   path={route.path}
-                  render={props => (
-                    <Suspense fallback={<div>Loading...</div>}>
-                    <route.component {...props} routes={route.routes} />
-                    </Suspense>
-                    )}
+                  render={props => {
+                    if(route.preload && !route.load && location.pathname === route.path){
+                      route.load = true;
+                      setTimeout(()=>{
+                        route.preload();
+                      }, window.Config.preload)
+                    }
+
+                    const Com = connect(mapStateToProps, mapDispatchToProps)(route.component);
+
+                    return (
+                    <React.Suspense fallback={<div>Loading...</div>}>
+                      <Com {...props} {...this.mixin} routes={route.routes} />
+                    </React.Suspense>
+                    )}}
                   />
                 ))}
               </Switch>

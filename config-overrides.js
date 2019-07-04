@@ -3,7 +3,7 @@ const path = require('path');
 
 const rewiredConfig = () => config => {
   setTimeout(() => {
-    console.log(config);
+    // console.log(config);
   },5555);
   config.output.publicPath = './'
   return config;
