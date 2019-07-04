@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { NavBar } from 'antd-mobile';
 import AnimatedRouter from '../components/ui/AnimatedRouter';
 import utils from '../utils'
 import login from './login';
@@ -57,32 +58,35 @@ class Routers extends React.Component {
       <Router>
         <Route render={({ location, match }) => {
           return (
-            <AnimatedRouter location={location}>
-              <Switch location={location}>
-                <Route exact path="/" render={() => (<Redirect to="/login" />)} />
-                {routes.map((route, i) => (
-                  <Route
-                  key={i}
-                  path={route.path}
-                  render={props => {
-                    if(route.preload && !route.load && location.pathname === route.path){
-                      route.load = true;
-                      setTimeout(()=>{
-                        route.preload();
-                      }, window.Config.preload)
-                    }
+            <React.Fragment>
+              <NavBar mode="dark" className={'absolute'}></NavBar>
+              <AnimatedRouter location={location}>
+                <Switch location={location}>
+                  <Route exact path="/" render={() => (<Redirect to="/login" />)} />
+                  {routes.map((route, i) => (
+                    <Route
+                    key={i}
+                    path={route.path}
+                    render={props => {
+                      if(route.preload && !route.load && location.pathname === route.path){
+                        route.load = true;
+                        setTimeout(()=>{
+                          route.preload();
+                        }, window.Config.preload)
+                      }
 
-                    const Com = connect(mapStateToProps, mapDispatchToProps)(route.component);
+                      const Com = connect(mapStateToProps, mapDispatchToProps)(route.component);
 
-                    return (
-                    <React.Suspense fallback={<div>Loading...</div>}>
-                      <Com {...props} {...this.mixin} routes={route.routes} />
-                    </React.Suspense>
-                    )}}
-                  />
-                ))}
-              </Switch>
-            </AnimatedRouter>
+                      return (
+                      <React.Suspense fallback={<div>Loading...</div>}>
+                        <Com {...props} {...this.mixin} routes={route.routes} />
+                      </React.Suspense>
+                      )}}
+                    />
+                  ))}
+                </Switch>
+              </AnimatedRouter>
+            </React.Fragment>
           )}}>
         </Route>
       </Router>

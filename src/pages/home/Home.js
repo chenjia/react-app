@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavBar } from 'antd-mobile';
 
 class Home extends React.Component {
 
@@ -13,7 +14,12 @@ class Home extends React.Component {
 
   render() {
     return (
-      <div style={{background:'green', height: '900px'}}>
+      <div>
+        <NavBar
+          mode="dark"
+          leftContent={(<i className={'fa fa-user'} />)}
+          rightContent={(<i className={'fa fa-user'} />)}
+        >首页</NavBar>
         <div onClick={() => {this.props.history.push('./setting')}}>to setting 1234567890</div>
       </div>
     );

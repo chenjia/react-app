@@ -9,21 +9,6 @@ import Routers from './routers';
 
 let store = createStore(reducers);
 
-// const mapStateToProps = (state) => {
-//   return {...state}
-// }
-
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     header: hasHeader => {
-//       dispatch({type:'UI/HERADER', ui: {header:hasHeader}})
-//     },
-//     login: user => {
-//       dispatch({type: 'APP/LOGIN', app: {user:user}})
-//     }
-//   }
-// }
-
 class App extends React.Component {
   constructor(props) {
     super(props)
