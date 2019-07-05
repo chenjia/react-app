@@ -39,13 +39,7 @@ class Routers extends React.Component {
     this.state = {};
     this.mixin = {
       screenWidth: document.documentElement.clientWidth,
-      screenHeight: document.documentElement.clientHeight,
-      back(){
-        props.history.goBack();
-      },
-      go(url, state){
-        props.history.push({pathname: url,state: state});
-      }
+      screenHeight: document.documentElement.clientHeight
     }
   }
 
@@ -60,7 +54,7 @@ class Routers extends React.Component {
           return (
             <React.Fragment>
               <NavBar mode="dark" className={'absolute'}></NavBar>
-              <AnimatedRouter location={location}>
+              <AnimatedRouter location={location} {...this.mixin}>
                 <Switch location={location}>
                   <Route exact path="/" render={() => (<Redirect to="/login" />)} />
                   {routes.map((route, i) => (

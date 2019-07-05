@@ -47,10 +47,6 @@ class Login extends React.Component {
     }
   }
 
-  componentWillMount(){
-    this.getCaptcha();
-  }
-
   getCaptcha(){
     utils.http.post('/manage/user/captcha').then(response => {
       this.setState({
@@ -63,16 +59,33 @@ class Login extends React.Component {
   }
 
   login(){
-    utils.http.post('/manage/user/login', this.model).then(response => {
-      if(response.data.body.data) {
-        this.props.go('./home');
-      }else{
-        this.getCaptcha();
+    this.props.form.validateFields((error, values) => {
+      if (error) {
+        console.log('error', error, values);
+      } else {
+        const model = this.props.form.getFieldsValue().model;
+        model.captchaToken = this.state.model.captchaToken;
+        utils.http.post('/manage/user/login', model).then(response => {
+          if(response.data.body.data) {
+            this.props.history.push('./home');
+          }else{
+            this.getCaptcha();
+          }
+        }, error => {
+          alert('error');
+          this.props.history.push('./home');
+        });
       }
-    }, error => {
-      alert('error');
-      this.props.go('./home');
-    })
+    });
+  }
+
+  componentDidMount(){
+    console.log(this.props)
+    this.getCaptcha();
+
+    this.props.form.setFieldsValue({
+      model:this.state.model
+    });
   }
 
   render() {
@@ -92,23 +105,22 @@ class Login extends React.Component {
 
         <List>
           <InputItem
-            {...getFieldProps('username', {
-              initialValue:this.state.model.username
+            {...getFieldProps('model.username', {
+              rules:[{
+                required: true,
+                message: '账号不能为空！',
+              }]
             })}
             clear
             placeholder="请输入账号"
           >账　号</InputItem>
           <InputItem
-            {...getFieldProps('password', {
-              initialValue:this.state.model.password
-            })}
+            {...getFieldProps('model.password')}
             clear
             placeholder="请输入密码"
           >密　码</InputItem>
           <InputItem
-            {...getFieldProps('captcha', {
-              initialValue:this.state.model.captcha
-            })}
+            {...getFieldProps('model.captcha')}
             clear
             placeholder="请输入验证码"
             extra={(
