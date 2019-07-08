@@ -163,13 +163,17 @@ class Home extends React.Component {
     }
   }
 
+  componentDidMount(){
+    console.log('home')
+  }
+
   render() {
     return (
       <div>
         <NavBar
           mode="dark"
-          leftContent={(<i className={'fa fa-fw fa-bars'} />)}
-          rightContent={(<i className={'fa fa-fw fa-qrcode'} />)}
+          leftContent={(<i onClick={()=>this.props.history.push('./login')} className={'fa fa-fw fa-bars'} />)}
+          rightContent={(<i onClick={()=>this.props.history.push('./login')} className={'fa fa-fw fa-qrcode'} />)}
         >首页</NavBar>
 
         <Carousel

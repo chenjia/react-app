@@ -1,5 +1,5 @@
 import React from 'react';
-import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import { TransitionGroup, CSSTransition, SwitchTransition } from 'react-transition-group';
 
 const historyArray = [];
 class AnimatedRouter extends React.Component {
@@ -23,11 +23,11 @@ class AnimatedRouter extends React.Component {
     }
 
     return (
-      <TransitionGroup className={'transition-wrapper'} childFactory={child => React.cloneElement(child,{classNames:  'absolute ' + (forward?'forward':'back')})}>
-        <CSSTransition key={this.props.location.pathname} timeout={300}>
-        <div style={{overflowY:'auto', height: this.props.screenHeight+'px'}}>{this.props.children}</div>
+      <SwitchTransition>
+        <CSSTransition classNames="forward" key={this.props.location.pathname} timeout={5000}>
+          <div className={'transition-wrapper'} style={{overflow:'hidden auto', width: this.props.screenWidth+'px', height: this.props.screenHeight+'px'}}>{this.props.children}</div>
         </CSSTransition>
-      </TransitionGroup>
+      </SwitchTransition>
     )
   }
 }

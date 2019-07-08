@@ -1,6 +1,7 @@
 body{
   margin:0;
   padding:0;
+  overflow:hidden;
 }
 .absolute{
   position:absolute;
@@ -12,7 +13,7 @@ body{
   display: none;
 }
 .transition-wrapper{
-  position:absolute;
+  position:absolute!important;
   width:100%;
   height:100%;
   overflow: hidden;
@@ -41,49 +42,61 @@ body{
 .font-sm{
   font-size:12px;
 }
-.forward-enter {
+
+.back-exit-active, .forward-exit-active{
+  transition: all 5s;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.back-enter, .forward-exit{
+  transition: all 5s;
+  transform: translateX(-50px) translateZ(0);
   opacity: 0;
-  transform: translateX(50px) translateZ(0);
 }
-
-.forward-enter-active {
-  opacity: 1;
-  transform: translateX(0);
-  transition: all .15s ease-out .15s;
+.forward-enter-active, .back-enter-active{
+  transition: all 5s;
+  transform: translateX(0)!important;
+  opacity: 1!important;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
-
-.forward-exit {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.forward-exit-active {
+.forward-enter, .back-exit{
+  transition: all 5s;
+  transform: translateX(50px);
   opacity: 0;
-  transform: translateX(-50px);
-  transition: all .15s;
 }
-
-.back-enter {
-  opacity: .5;
-  transform: translateX(-100%);
-}
-
-.back-enter-active {
-  opacity: 1;
+.forward-enter-done{
+  transition: all 5s;
   transform: translateX(0);
-  transition: all 300ms;
-}
-
-.back-exit {
   opacity: 1;
-  transform: translateX(0);
+}
+.forward-exit-done{
+  transition: all 5s;
+  transform: translateX(50px);
+  opacity: 0;
 }
 
-.back-exit-active {
-  opacity: .5;
-  transform: translate(100%);
-  transition: all 300ms;
+/*.back-exit-active,.forward-exit-active{
+  transform: translateX(0);
+  transition: all 1.5s ease-in;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
+.forward-enter-active,.back-enter-active{
+  transition: all 1.5s ease-out;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.forward-enter, .back-exit{
+  transition: all 1.5s ease-out;
+  transform: translateX(0) translateZ(0);
+  opacity: 0;
+}
+.back-enter, .forward-exit{
+  transition: all 1.5s ease-out;
+  transform: translateX(-50px) translateZ(0);
+  opacity: 0;
+}*/
 
 .am-list-item{
   min-height:48px!important;

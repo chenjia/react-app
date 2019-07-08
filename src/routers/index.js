@@ -56,7 +56,7 @@ class Routers extends React.Component {
               <NavBar mode="dark" className={'absolute'}></NavBar>
               <AnimatedRouter location={location} {...this.mixin}>
                 <Switch location={location}>
-                  <Route exact path="/" render={() => (<Redirect to="/login" />)} />
+                  <Route key="/" exact path="/" render={() => (<Redirect to="/login" />)} />
                   {routes.map((route, i) => (
                     <Route
                     key={i}

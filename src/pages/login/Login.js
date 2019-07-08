@@ -80,7 +80,7 @@ class Login extends React.Component {
   }
 
   componentDidMount(){
-    console.log(this.props)
+    console.log('login')
     this.getCaptcha();
 
     this.props.form.setFieldsValue({
@@ -95,7 +95,7 @@ class Login extends React.Component {
       <div>
         <NavBar
           mode="dark"
-          leftContent={(<i className={'fa fa-fw fa-home'} />)}
+          leftContent={(<i onClick={()=>this.props.history.push('./home')} className={'fa fa-fw fa-home'} />)}
           rightContent={(<i className={'fa fa-fw fa-refresh'} />)}
         >react-app</NavBar>
 
