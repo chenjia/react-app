@@ -37,7 +37,7 @@ class Routers extends React.Component {
         <Route render={({ location, match }) => {
           return (
             <React.Fragment>
-              <NavBar mode="dark" className={'absolute'} style={{zIndex:-1}}></NavBar>
+              <NavBar mode="dark" style={{position:'absolute',top:0,width:'100%',zIndex:-1}}></NavBar>
               <AnimatedRouter location={location} {...this.mixin}>
                 <Switch location={location}>
                   <Route key="/" exact path="/" render={() => (<Redirect to="/login" />)} />
