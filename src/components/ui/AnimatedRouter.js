@@ -3,7 +3,6 @@ import { TransitionGroup, CSSTransition, SwitchTransition } from 'react-transiti
 
 const historyArray = [];
 class AnimatedRouter extends React.Component {
-
   render() {
     let forward = true;
     if(historyArray.length === 0){
@@ -24,7 +23,7 @@ class AnimatedRouter extends React.Component {
 
     return (
       <SwitchTransition>
-        <CSSTransition classNames="forward" key={this.props.location.pathname} timeout={5000}>
+        <CSSTransition classNames="forward" key={this.props.location.pathname} timeout={150}>
           <div className={'transition-wrapper'} style={{overflow:'hidden auto', width: this.props.screenWidth+'px', height: this.props.screenHeight+'px'}}>{this.props.children}</div>
         </CSSTransition>
       </SwitchTransition>

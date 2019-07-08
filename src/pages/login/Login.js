@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { NavBar,List, InputItem, WhiteSpace, Button } from 'antd-mobile';
 import { createForm } from 'rc-form';
 import styled,{ keyframes } from 'styled-components';
@@ -95,8 +96,8 @@ class Login extends React.Component {
       <div>
         <NavBar
           mode="dark"
-          leftContent={(<i onClick={()=>this.props.history.push('./home')} className={'fa fa-fw fa-home'} />)}
-          rightContent={(<i className={'fa fa-fw fa-refresh'} />)}
+          leftContent={(<i onClick={()=>this.props.history.push('./setting')} className={'fa fa-fw fa-home'} />)}
+          rightContent={(<i onClick={()=>this.props.history.push('./home')} className={'fa fa-fw fa-refresh'} />)}
         >react-app</NavBar>
 
         <div className={'pd-md center'} style={{backgroundColor:'white'}}>
@@ -139,4 +140,19 @@ class Login extends React.Component {
   }
 }
 
-export default createForm()(Login)
+const mapStateToProps = state => {
+  return {...state}
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    header: hasHeader => {
+      dispatch({type:'UI/HERADER', ui: {header:hasHeader}})
+    },
+    login: user => {
+      dispatch({type: 'APP/LOGIN', app: {user:user}})
+    }
+  }
+}
+
+export default createForm()(connect()(Login))

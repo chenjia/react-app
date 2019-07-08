@@ -43,37 +43,28 @@ body{
   font-size:12px;
 }
 
-.back-exit-active, .forward-exit-active{
-  transition: all 5s;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-}
+
 .back-enter, .forward-exit{
-  transition: all 5s;
+  transition: all .15s;
   transform: translateX(-50px) translateZ(0);
   opacity: 0;
 }
+.forward-enter, .back-exit{
+  transition: all .15s;
+  transform: translateX(50px) translateZ(0);
+  opacity: 0;
+}
 .forward-enter-active, .back-enter-active{
-  transition: all 5s;
+  transition: all .15s ease-out;
   transform: translateX(0)!important;
   opacity: 1!important;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
 }
-.forward-enter, .back-exit{
-  transition: all 5s;
-  transform: translateX(50px);
-  opacity: 0;
-}
-.forward-enter-done{
-  transition: all 5s;
-  transform: translateX(0);
-  opacity: 1;
-}
-.forward-exit-done{
-  transition: all 5s;
-  transform: translateX(50px);
-  opacity: 0;
+.back-exit-active, .forward-exit-active{
+  transition: all .15s ease-in;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 /*.back-exit-active,.forward-exit-active{

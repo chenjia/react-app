@@ -1,9 +1,9 @@
 import './config';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 import './css/global.css';
 import { createStore } from 'redux';
-import { Provider } from 'react-redux';
 import reducers from './redux';
 import Routers from './routers';
 
