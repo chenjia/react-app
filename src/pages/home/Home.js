@@ -188,8 +188,8 @@ class Home extends React.Component {
           autoplay={true}
           infinite
           style={{ width: '100%', height: this.props.screenWidth*0.6+'px' }}
-          dotStyle={{marginBottom:'10px'}}
-          dotActiveStyle={{marginBottom:'10px'}}
+          dotStyle={{marginBottom:'10px', backgroundColor:'black', opacity: .5}}
+          dotActiveStyle={{marginBottom:'10px', backgroundColor:'white', opacity: .8}}
         >
           {this.state.carouselImgs.map((val, i) => (
             <img
