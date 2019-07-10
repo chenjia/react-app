@@ -45,24 +45,24 @@ body{
 
 
 .back-enter, .forward-exit{
-  transition: all 2s ease-out;
+  transition: all .15s ease-out;
   transform: translateX(-50px) translateZ(0);
   opacity: 0;
 }
 .forward-enter, .back-exit{
-  transition: all 2s ease-out;
+  transition: all .15s ease-out;
   transform: translateX(50px) translateZ(0);
   opacity: 0;
 }
 .forward-enter-active, .back-enter-active{
-  transition: all 2s ease-out;
+  transition: all .15s ease-out .15s;
   transform: translateX(0)!important;
   opacity: 1!important;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
 }
 .back-exit-active, .forward-exit-active{
-  transition: all 2s ease-out;
+  transition: all .15s ease-out .15s;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
 }
