@@ -8,6 +8,7 @@ class Home extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      ready: false,
       carouselImgs: [
         'static/img/banner/0.jpg',
         'static/img/banner/1.jpg',
@@ -165,6 +166,13 @@ class Home extends React.Component {
 
   componentDidMount(){
     console.log('home')
+
+    setTimeout(() => {
+      this.setState({
+        ready: true
+      });
+    },500)
+    
   }
 
   render() {
@@ -176,9 +184,10 @@ class Home extends React.Component {
           rightContent={(<i onClick={()=>this.props.history.push('./login')} className={'fa fa-fw fa-qrcode'} />)}
         >首页</NavBar>
 
-        <Carousel
+        { this.state.ready?(<Carousel
           autoplay={true}
           infinite
+          style={{ width: '100%', height: this.props.screenWidth*0.6+'px' }}
           dotStyle={{marginBottom:'10px'}}
           dotActiveStyle={{marginBottom:'10px'}}
         >
@@ -189,7 +198,8 @@ class Home extends React.Component {
               style={{ width: '100%', height: this.props.screenWidth*0.6+'px' }}
             />
           ))}
-        </Carousel>
+        </Carousel>):(<img src={this.state.carouselImgs[0]} style={{ display:'block', width: '100%', height: this.props.screenWidth*0.6+'px' }}/>)
+        }
 
         <Grid 
           data={this.state.menus}

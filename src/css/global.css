@@ -43,7 +43,6 @@ body{
   font-size:12px;
 }
 
-
 .back-enter, .forward-exit{
   transition: all .15s ease-out;
   transform: translateX(-50px) translateZ(0);
@@ -66,28 +65,6 @@ body{
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
 }
-
-/*.back-exit-active,.forward-exit-active{
-  transform: translateX(0);
-  transition: all 1.5s ease-in;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-}
-.forward-enter-active,.back-enter-active{
-  transition: all 1.5s ease-out;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-}
-.forward-enter, .back-exit{
-  transition: all 1.5s ease-out;
-  transform: translateX(0) translateZ(0);
-  opacity: 0;
-}
-.back-enter, .forward-exit{
-  transition: all 1.5s ease-out;
-  transform: translateX(-50px) translateZ(0);
-  opacity: 0;
-}*/
 
 .am-list-item{
   min-height:48px!important;

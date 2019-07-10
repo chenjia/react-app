@@ -27,10 +27,6 @@ class Routers extends React.Component {
     }
   }
 
-  componentDidMount() {
-    
-  }
-
   render(){
     return (
       <Router>
