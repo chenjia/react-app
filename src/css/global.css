@@ -16,7 +16,7 @@ body{
   position:absolute!important;
   width:100%;
   height:100%;
-  overflow: hidden;
+  overflow:hidden auto;
 }
 .center{
   text-align:center;
@@ -45,24 +45,24 @@ body{
 
 
 .back-enter, .forward-exit{
-  transition: all .15s;
+  transition: all 2s ease-out;
   transform: translateX(-50px) translateZ(0);
   opacity: 0;
 }
 .forward-enter, .back-exit{
-  transition: all .15s;
+  transition: all 2s ease-out;
   transform: translateX(50px) translateZ(0);
   opacity: 0;
 }
 .forward-enter-active, .back-enter-active{
-  transition: all .15s ease-out;
+  transition: all 2s ease-out;
   transform: translateX(0)!important;
   opacity: 1!important;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
 }
 .back-exit-active, .forward-exit-active{
-  transition: all .15s ease-in;
+  transition: all 2s ease-out;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
 }
