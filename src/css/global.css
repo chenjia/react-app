@@ -54,14 +54,14 @@ body{
   opacity: 0;
 }
 .forward-enter-active, .back-enter-active{
-  transition: all .15s ease-out .15s;
+  transition: all .15s ease-out .16s;
   transform: translateX(0)!important;
   opacity: 1!important;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
 }
 .back-exit-active, .forward-exit-active{
-  transition: all .15s ease-out .15s;
+  transition: all .15s ease-out .16s;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
 }
