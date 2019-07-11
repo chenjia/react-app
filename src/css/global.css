@@ -66,6 +66,16 @@ body{
   -webkit-backface-visibility: hidden;
 }
 
+.am-navbar i,.am-navbar span{
+  padding:13px;
+}
+
+.am-navbar-left{
+  padding-left:0!important
+}
+.am-navbar-right{
+  margin-right:0!important;
+}
 .am-list-item{
   min-height:48px!important;
 }

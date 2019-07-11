@@ -5,8 +5,6 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import reducers from './redux';
 import Routers from './routers';
-let fastclick = require('fastclick')
-fastclick.attach(document.body)
 
 window.Config = {
   appVersion:'1.0.0',
