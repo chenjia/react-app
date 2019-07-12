@@ -172,7 +172,7 @@ class Home extends React.Component {
       this.setState({
         ready: true
       });
-    },300)
+    },400)
     
     for (let i=0; i<this.state.timelines.length; i++) {
       const item = this.state.timelines[i];
