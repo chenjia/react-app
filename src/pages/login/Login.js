@@ -101,7 +101,7 @@ class Login extends React.Component {
         >react-app</NavBar>
 
         <div className={'pd-md center'} style={{backgroundColor:'white'}}>
-          <img src="logo.jpg" style={{width:'50%'}} />
+          <img src="logo.jpg" alt="" style={{width:'50%'}} />
         </div>
 
         <List>
@@ -126,7 +126,7 @@ class Login extends React.Component {
             placeholder="请输入验证码"
             extra={(
               <Captcha>
-                <img onClick={()=>this.getCaptcha()} src={this.state.base64Img} style={{width:'100px', height:'36px'}} />
+                <img onClick={()=>this.getCaptcha()} alt="" src={this.state.base64Img} style={{width:'100px', height:'36px'}} />
               </Captcha>
             )}
           >验证码</InputItem>
@@ -155,4 +155,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default createForm()(connect()(Login))
+export default createForm()(connect(mapStateToProps, mapDispatchToProps)(Login))

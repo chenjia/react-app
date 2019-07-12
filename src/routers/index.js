@@ -4,12 +4,18 @@ import AnimatedRouter from '../components/ui/AnimatedRouter';
 import utils from '../utils'
 import login from './login';
 import home from './home';
+import list from './list';
+
+setTimeout(() => {
+  import(/* webpackChunkName: "lazyLibs" */ '../lazyLibs')
+}, window.Config.preload)
 
 window.utils = utils;
 
 const routes = [
   ...login,
   ...home,
+  ...list,
 ];
 
 const Router = require('react-router-dom').HashRouter;
@@ -45,7 +51,9 @@ class Routers extends React.Component {
                       if(route.preload && !route.load && location.pathname === route.path){
                         route.load = true;
                         setTimeout(()=>{
-                          route.preload();
+                          route.preload.forEach((item) => {
+                            item();
+                          });
                         }, window.Config.preload)
                       }
 

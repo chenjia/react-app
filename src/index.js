@@ -6,8 +6,7 @@ import './css/global.css';
 import { createStore } from 'redux';
 import reducers from './redux';
 import Routers from './routers';
-let fastclick = require('fastclick')
-fastclick.attach(document.body)
+
 let store = createStore(reducers);
 
 class App extends React.Component {

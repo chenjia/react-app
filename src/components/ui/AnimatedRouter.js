@@ -1,5 +1,5 @@
 import React from 'react';
-import { TransitionGroup, CSSTransition, SwitchTransition } from 'react-transition-group';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 const historyArray = [];
 class AnimatedRouter extends React.Component {

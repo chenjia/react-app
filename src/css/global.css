@@ -79,3 +79,11 @@ body{
 .am-list-item{
   min-height:48px!important;
 }
+.am-steps-item-tail:after{
+  margin-left: 1px;
+}
+.list .am-list-item img{
+  width:48px!important;
+  height:48px!important;
+  border-radius:50%;
+}

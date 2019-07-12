@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavBar, Carousel, Grid, Steps } from 'antd-mobile';
+import { Card, Carousel, Grid, NavBar, Steps } from 'antd-mobile';
 
 const Step = Steps.Step;
 
@@ -90,7 +90,8 @@ class Home extends React.Component {
         icon: 'ellipsis-h',
         url: 'splash'
       }],
-      timelines:[{
+      currentStep: 0,
+      timelines: [{
         time:(()=>{
           let date = new Date()
           date.setHours(9, 0, 0, 0)
@@ -171,8 +172,17 @@ class Home extends React.Component {
       this.setState({
         ready: true
       });
-    },500)
+    },300)
     
+    for (let i=0; i<this.state.timelines.length; i++) {
+      const item = this.state.timelines[i];
+      if (!item.history) {
+        this.setState({
+          currentStep: i
+        });
+        break;
+      }
+    }
   }
 
   render() {
@@ -184,22 +194,26 @@ class Home extends React.Component {
           rightContent={(<i onClick={()=>this.props.history.push('./login')} className={'fa fa-fw fa-qrcode'} />)}
         >首页</NavBar>
 
-        { this.state.ready?(<Carousel
-          autoplay={true}
-          infinite
-          style={{ width: '100%', height: this.props.screenWidth*0.6+'px' }}
-          dotStyle={{marginBottom:'10px', backgroundColor:'black', opacity: .5}}
-          dotActiveStyle={{marginBottom:'10px', backgroundColor:'white', opacity: .8}}
-        >
-          {this.state.carouselImgs.map((val, i) => (
-            <img
-              key={i}
-              src={val}
-              style={{ width: '100%', height: this.props.screenWidth*0.6+'px' }}
-            />
-          ))}
-        </Carousel>):(<img src={this.state.carouselImgs[0]} style={{ display:'block', width: '100%', height: this.props.screenWidth*0.6+'px' }}/>)
-        }
+        <div style={{position:'relative'}}>
+          <img src={this.state.carouselImgs[0]} alt="" style={{ display:'block', width: '100%', height: this.props.screenWidth*0.6+'px' }}/>
+        
+          {this.state.ready && (<Carousel
+            autoplay={true}
+            infinite
+            style={{ position:'absolute', top:0, width: '100%', height: this.props.screenWidth*0.6+'px' }}
+            dotStyle={{marginBottom:'10px', backgroundColor:'black', opacity: .5}}
+            dotActiveStyle={{marginBottom:'10px', backgroundColor:'white', opacity: .8}}
+          >
+            {this.state.carouselImgs.map((val, i) => (
+              <img
+                alt=""
+                key={i}
+                src={val}
+                style={{ width: '100%', height: this.props.screenWidth*0.6+'px' }}
+              />
+            ))}
+          </Carousel>)}
+        </div>
 
         <Grid 
           data={this.state.menus}
@@ -213,16 +227,21 @@ class Home extends React.Component {
           )}
         />
 
-        <div className={'pd-lg'}>
-          <div className="sub-title">日程安排</div>
-          <Steps current={1}>
-          {
-            this.state.timelines.map((item, i) => (
-              <Step key={i} title={item.title} icon={(<i className={'font-lg '+item.icon} />)} description={item.content} />
-            ))
-          }
-          </Steps>
-        </div>
+        <Card full>
+          <Card.Header
+          title={(<div style={{margin:'5px -5px', color:'#108ee9'}}><i className="fa fa-user"/> <span>日程安排</span></div>)}
+          thumb=""
+          />
+          <Card.Body>
+            <Steps current={this.state.currentStep}>
+            {
+              this.state.timelines.map((item, i) => (
+                <Step key={i} title={item.title} icon={(<div style={{width:'26px', height:'26px', lineHeight:'20px', border:'1px solid '+(this.state.currentStep>=i?'#108ee9':'#ccc'), borderRadius:'50%'}}><i className={'font-lg '+item.icon} /></div>)} description={item.content} />
+              ))
+            }
+            </Steps>
+          </Card.Body>
+        </Card>
       </div>
     );
   }
