@@ -43,7 +43,7 @@ body{
   font-size:12px;
 }
 
-.forward-exit, .back-exit{
+.forward-exit{
   transition: all 150ms ease-out;
   transform: translateX(0) translateZ(0);
   opacity: 1;
@@ -57,11 +57,16 @@ body{
   transform: translateX(50px) translateZ(0);
   opacity: 0;
 }
-.forward-enter-active, .back-enter-active{
+.forward-enter-active{
   transform: translateX(0);
   opacity: 1;
 }
 
+.back-exit{
+  transition: all 150ms ease-out;
+  transform: translateX(0) translateZ(0);
+  opacity: 1;
+}
 .back-exit-active{
   transform: translateX(50px) translateZ(0);
   opacity: 0;
@@ -70,6 +75,10 @@ body{
   transition: all 150ms ease-out 150ms;
   transform: translateX(-50px) translateZ(0);
   opacity: 0;
+}
+.back-enter-active{
+  transform: translateX(0);
+  opacity: 1;
 }
 
 .am-navbar i,.am-navbar span{
