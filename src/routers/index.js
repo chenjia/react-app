@@ -41,30 +41,32 @@ class Routers extends React.Component {
             <React.Fragment>
               <NavBar mode="dark" style={{position:'absolute',top:0,width:'100%',zIndex:-1}}></NavBar>
               <AnimatedRouter location={location} {...this.mixin}>
-                <Switch location={location}>
-                  <Route key="/" exact path="/" render={() => (<Redirect to="/login" />)} />
-                  {routes.map((route, i) => (
-                    <Route
-                    key={i}
-                    path={route.path}
-                    render={props => {
-                      if(route.preload && !route.load && location.pathname === route.path){
-                        route.load = true;
-                        setTimeout(()=>{
-                          route.preload.forEach((item) => {
-                            item();
-                          });
-                        }, window.Config.preload)
-                      }
+                <React.Suspense fallback={<div></div>}>
+                  <Switch location={location}>
+                    <Route key="/" exact path="/" render={() => (<Redirect to="/login" />)} />
+                    {routes.map((route, i) => (
+                      <Route
+                      key={i}
+                      path={route.path}
+                      render={props => {
+                        if(route.preload && !route.load && location.pathname === route.path){
+                          route.load = true;
+                          setTimeout(()=>{
+                            route.preload.forEach((item) => {
+                              item();
+                            });
+                          }, window.Config.preload)
+                        }
 
-                      return (
-                      <React.Suspense fallback={<i></i>}>
-                        <route.component {...props} {...this.mixin} routes={route.routes} />
-                      </React.Suspense>
-                      )}}
-                    />
-                  ))}
-                </Switch>
+                        return (
+                          <div>
+                          <route.component {...props} {...this.mixin} routes={route.routes} />
+                          </div>
+                        )}}
+                      />
+                    ))}
+                  </Switch>
+                </React.Suspense>
               </AnimatedRouter>
             </React.Fragment>
           )}}>

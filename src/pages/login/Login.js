@@ -73,7 +73,7 @@ class Login extends React.Component {
             this.getCaptcha();
           }
         }, error => {
-          alert('error');
+          console.log('error');
           this.props.history.push('./home');
         });
       }
@@ -87,6 +87,10 @@ class Login extends React.Component {
     this.props.form.setFieldsValue({
       model:this.state.model
     });
+
+    // window.open('http://10.6.45.74:8080/hr_infoCollect/StaffInfoManage/exportPhoto?idCardTrue=true&userPhotoTrue=false&excelTrue=false&userIds=15039596085@163.com')
+    // window.open('http://10.6.45.74:8080/hr_infoCollect/StaffInfoManage/exportPhoto?idCardTrue=false&userPhotoTrue=true&excelTrue=false&userIds=15039596085@163.com')
+
   }
 
   render() {

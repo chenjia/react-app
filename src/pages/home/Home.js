@@ -1,7 +1,28 @@
 import React from 'react';
-import { Card, Carousel, Grid, NavBar, Steps } from 'antd-mobile';
+import { Card, Carousel, NavBar, Steps } from 'antd-mobile';
+import styled from 'styled-components';
 
 const Step = Steps.Step;
+
+const Grid = styled.table`
+  width:100%;
+  text-align:center;
+  background:white;
+  font-size:13px;
+  border:none;
+  border-collapse: collapse;
+  td {
+    height:64px;
+    line-height: 20px;
+    vertical-align:middle;
+    border:1px solid #dfdfdf;
+    width:25%;
+    padding-top:5px;
+  }
+  td i{
+    font-size:24px;
+  }
+`;
 
 class Home extends React.Component {
 
@@ -16,7 +37,6 @@ class Home extends React.Component {
         'static/img/banner/3.jpg',
         'static/img/banner/4.jpg',
       ],
-      colors:['#ff7f50', '#87cefa', '#da70d6', '#32cd32', '#6495ed', '#ff69b4', '#ba55d3', '#cd5c5c', '#ffa500', '#40e0d0', '#1e90ff', '#ff6347', '#7b68ee', '#00fa9a', '#ffd700', '#6b8e23', '#ff00ff', '#3cb371', '#b8860b', '#30e0e0'],
       menus: [{
         name: '列表',
         icon: 'list',
@@ -172,7 +192,7 @@ class Home extends React.Component {
       this.setState({
         ready: true
       });
-    },400)
+    },500)
     
     for (let i=0; i<this.state.timelines.length; i++) {
       const item = this.state.timelines[i];
@@ -186,6 +206,24 @@ class Home extends React.Component {
   }
 
   render() {
+    const colors = ['#ff7f50', '#87cefa', '#da70d6', '#32cd32', '#6495ed', '#ff69b4', '#ba55d3', '#cd5c5c', '#ffa500', '#40e0d0', '#1e90ff', '#ff6347', '#7b68ee', '#00fa9a', '#ffd700', '#6b8e23', '#ff00ff', '#3cb371', '#b8860b', '#30e0e0'];
+    const trs = this.state.menus.map((menu, index) => {
+      if (index % 4 === 0) {
+        const tds = this.state.menus.map((menu, i) => {
+          if (i >= index && i < index + 4) {
+            return (<td key={i}>
+              <div>
+                <i className={'fa fa-'+menu.icon} style={{color:colors[i]}}></i><br/>
+                <span>{menu.name}</span>
+              </div>
+            </td>)
+          }
+        });
+
+        return (<tr key={index}>{tds}</tr>);
+      }
+    });
+
     return (
       <div>
         <NavBar
@@ -193,7 +231,7 @@ class Home extends React.Component {
           leftContent={(<i onClick={()=>this.props.history.push('./login')} className={'fa fa-fw fa-bars'} />)}
           rightContent={(<i onClick={()=>this.props.history.push('./login')} className={'fa fa-fw fa-qrcode'} />)}
         >首页</NavBar>
-
+        
         <div style={{position:'relative'}}>
           <img src={this.state.carouselImgs[0]} alt="" style={{ display:'block', width: '100%', height: this.props.screenWidth*0.6+'px' }}/>
         
@@ -215,17 +253,7 @@ class Home extends React.Component {
           </Carousel>)}
         </div>
 
-        <Grid 
-          data={this.state.menus}
-          activeStyle={false}
-          square={false}
-          renderItem={(menu, i) => (
-            <div onClick={()=>this.props.history.push(menu.url)}>
-              <i className={'fa fa-fw fa-'+menu.icon} style={{marginBottom:'5px', fontSize:'24px', color:this.state.colors[i]}}></i><br/>
-              <span>{menu.name}</span>
-            </div>
-          )}
-        />
+        <Grid><tbody>{trs}</tbody></Grid>
 
         <Card full>
           <Card.Header

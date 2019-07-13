@@ -21,10 +21,17 @@ class AnimatedRouter extends React.Component {
     }else{
       historyArray.pop();
     }
-    
+
     return (
       <TransitionGroup childFactory={child => React.cloneElement(child, {classNames: forward?'forward':'back'})}>
-        <CSSTransition key={this.props.location.pathname} timeout={300}>
+        <CSSTransition 
+          key={this.props.location.pathname} 
+          timeout={{
+            enter:300,
+            exit:150
+          }}
+          onEntering={node => {node.classList.add((forward?'forward':'back')+'-enter-active')}}
+        >
           <div className={'transition-wrapper'} style={{width: this.props.screenWidth+'px', height: this.props.screenHeight+'px'}}>{this.props.children}</div>
         </CSSTransition>
       </TransitionGroup>

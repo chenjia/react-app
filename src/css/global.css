@@ -43,27 +43,33 @@ body{
   font-size:12px;
 }
 
-.back-enter, .forward-exit{
-  transition: all .15s ease-out;
+.forward-exit, .back-exit{
+  transition: all 150ms ease-out;
+  transform: translateX(0) translateZ(0);
+  opacity: 1;
+}
+.forward-exit-active{
   transform: translateX(-50px) translateZ(0);
   opacity: 0;
 }
-.forward-enter, .back-exit{
-  transition: all .15s ease-out;
+.forward-enter{
+  transition: all 150ms ease-out 150ms;
   transform: translateX(50px) translateZ(0);
   opacity: 0;
 }
 .forward-enter-active, .back-enter-active{
-  transition: all .15s ease-out .16s;
-  transform: translateX(0)!important;
-  opacity: 1!important;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
+  transform: translateX(0);
+  opacity: 1;
 }
-.back-exit-active, .forward-exit-active{
-  transition: all .15s ease-out .16s;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
+
+.back-exit-active{
+  transform: translateX(50px) translateZ(0);
+  opacity: 0;
+}
+.back-enter{
+  transition: all 150ms ease-out 150ms;
+  transform: translateX(-50px) translateZ(0);
+  opacity: 0;
 }
 
 .am-navbar i,.am-navbar span{
