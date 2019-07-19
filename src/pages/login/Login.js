@@ -87,10 +87,6 @@ class Login extends React.Component {
     this.props.form.setFieldsValue({
       model:this.state.model
     });
-
-    // window.open('http://10.6.45.74:8080/hr_infoCollect/StaffInfoManage/exportPhoto?idCardTrue=true&userPhotoTrue=false&excelTrue=false&userIds=15039596085@163.com')
-    // window.open('http://10.6.45.74:8080/hr_infoCollect/StaffInfoManage/exportPhoto?idCardTrue=false&userPhotoTrue=true&excelTrue=false&userIds=15039596085@163.com')
-
   }
 
   render() {
@@ -100,7 +96,7 @@ class Login extends React.Component {
       <div>
         <NavBar
           mode="dark"
-          leftContent={(<i onClick={()=>this.props.history.push('./setting')} className={'fa fa-fw fa-home'} />)}
+          leftContent={(<i onClick={()=>this.props.history.push('./home')} className={'fa fa-fw fa-home'} />)}
           rightContent={(<i onClick={()=>this.props.history.push('./home')} className={'fa fa-fw fa-refresh'} />)}
         >react-app</NavBar>
 

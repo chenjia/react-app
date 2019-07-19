@@ -5,6 +5,9 @@ import utils from '../utils'
 import login from './login';
 import home from './home';
 import list from './list';
+import tab from './tab';
+import chart from './chart';
+import contact from './contact';
 
 setTimeout(() => {
   import(/* webpackChunkName: "lazyLibs" */ '../lazyLibs')
@@ -16,6 +19,9 @@ const routes = [
   ...login,
   ...home,
   ...list,
+  ...tab,
+  ...chart,
+  ...contact,
 ];
 
 const Router = require('react-router-dom').HashRouter;

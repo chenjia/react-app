@@ -185,15 +185,7 @@ class Home extends React.Component {
     }
   }
 
-  componentDidMount(){
-    console.log('home')
-
-    setTimeout(() => {
-      this.setState({
-        ready: true
-      });
-    },500)
-    
+  componentWillMount() {
     for (let i=0; i<this.state.timelines.length; i++) {
       const item = this.state.timelines[i];
       if (!item.history) {
@@ -205,13 +197,23 @@ class Home extends React.Component {
     }
   }
 
+  componentDidMount(){
+    console.log('home')
+
+    setTimeout(() => {
+      this.setState({
+        ready: true
+      });
+    },500)
+  }
+
   render() {
     const colors = ['#ff7f50', '#87cefa', '#da70d6', '#32cd32', '#6495ed', '#ff69b4', '#ba55d3', '#cd5c5c', '#ffa500', '#40e0d0', '#1e90ff', '#ff6347', '#7b68ee', '#00fa9a', '#ffd700', '#6b8e23', '#ff00ff', '#3cb371', '#b8860b', '#30e0e0'];
     const trs = this.state.menus.map((menu, index) => {
       if (index % 4 === 0) {
         const tds = this.state.menus.map((menu, i) => {
           if (i >= index && i < index + 4) {
-            return (<td key={i}>
+            return (<td key={i} onClick={() => this.props.history.push(menu.url)}>
               <div>
                 <i className={'fa fa-'+menu.icon} style={{color:colors[i]}}></i><br/>
                 <span>{menu.name}</span>
@@ -223,6 +225,8 @@ class Home extends React.Component {
         return (<tr key={index}>{tds}</tr>);
       }
     });
+
+    console.log(trs)
 
     return (
       <div>
