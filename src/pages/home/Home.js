@@ -198,8 +198,6 @@ class Home extends React.Component {
   }
 
   componentDidMount(){
-    console.log('home')
-
     setTimeout(() => {
       this.setState({
         ready: true
@@ -225,8 +223,6 @@ class Home extends React.Component {
         return (<tr key={index}>{tds}</tr>);
       }
     });
-
-    console.log(trs)
 
     return (
       <div>

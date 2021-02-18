@@ -22,6 +22,8 @@ class AnimatedRouter extends React.Component {
       historyArray.pop();
     }
 
+    console.log(historyArray)
+
     return (
       <TransitionGroup childFactory={child => React.cloneElement(child, {classNames: forward?'forward':'back'})}>
         <CSSTransition 
